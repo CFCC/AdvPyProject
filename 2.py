@@ -46,22 +46,22 @@ class Player(pygame.sprite.Sprite):
         if self.rect.x < 0:
             bump.play()
             self.rect.x = 0
-        if self.rect.x > 685:
+        if self.rect.x > 1351:
             bump.play()
-            self.rect.x = 685
+            self.rect.x = 1351
         if self.rect.y < 0:
             bump.play()
             self.rect.y = 0
-        if self.rect.y > 385:
+        if self.rect.y > 753:
             bump.play()
-            self.rect.y = 385
+            self.rect.y = 753
 # Initialize Pygame
 pygame.init()
 
 bump = pygame.mixer.Sound("bump.wav")
 # Set the height and width of the screen
-screen_width = 700
-screen_height = 400
+screen_width = 1366
+screen_height = 768
 screen = pygame.display.set_mode([screen_width, screen_height])
  
 # This is a list of 'sprites.' Each block in the program is
