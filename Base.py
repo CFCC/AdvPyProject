@@ -30,8 +30,8 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
  
 # Screen dimensions
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1365
+SCREEN_HEIGHT = 700
  
  
 class Player(pygame.sprite.Sprite):
@@ -107,7 +107,9 @@ class Player(pygame.sprite.Sprite):
         # See if we are on the ground.
         if self.rect.y >= SCREEN_HEIGHT - self.rect.height and self.change_y >= 0:
             self.change_y = 0
-            self.rect.y = SCREEN_HEIGHT - self.rect.height
+            self.rect.y = 40
+            self.rect.x = 40
+            
  
     def jump(self):
         """ Called when user hits 'jump' button. """
@@ -195,9 +197,9 @@ class Level_01(Level):
         Level.__init__(self, player)
  
         # Array with width, height, x, and y of platform
-        level = [[210, 70, 500, 500],
-                 [210, 70, 200, 400],
-                 [210, 70, 600, 300],
+        level = [[210, 10, 0, 100],
+                 [210, 10, 200, 600],
+                 [210, 10, 600, 500],
                  ]
  
         # Go through the array above and add platforms
@@ -233,8 +235,8 @@ def main():
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
  
-    player.rect.x = 340
-    player.rect.y = SCREEN_HEIGHT - player.rect.height
+    player.rect.x = 40
+    player.rect.y = 40
     active_sprite_list.add(player)
  
     # Loop until the user clicks the close button.
@@ -250,17 +252,17 @@ def main():
                 done = True
  
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_a:
                     player.go_left()
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_d:
                     player.go_right()
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_w:
                     player.jump()
  
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT and player.change_x < 0:
+                if event.key == pygame.K_a and player.change_x < 0:
                     player.stop()
-                if event.key == pygame.K_RIGHT and player.change_x > 0:
+                if event.key == pygame.K_d and player.change_x > 0:
                     player.stop()
  
         # Update the player.
