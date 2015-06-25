@@ -46,22 +46,22 @@ class Player(pygame.sprite.Sprite):
         if self.rect.x < 0:
             bump.play()
             self.rect.x = 0
-        if self.rect.x > 685:
+        if self.rect.x > 1351:
             bump.play()
-            self.rect.x = 685
+            self.rect.x = 1351
         if self.rect.y < 0:
             bump.play()
             self.rect.y = 0
-        if self.rect.y > 385:
+        if self.rect.y > 753:
             bump.play()
-            self.rect.y = 385
+            self.rect.y = 753
 # Initialize Pygame
 pygame.init()
 
 bump = pygame.mixer.Sound("bump.wav")
 # Set the height and width of the screen
-screen_width = 700
-screen_height = 400
+screen_width = 1366
+screen_height = 768
 screen = pygame.display.set_mode([screen_width, screen_height])
  
 # This is a list of 'sprites.' Each block in the program is
@@ -117,23 +117,23 @@ while not done:
             done = True
         # Set the speed based on the key pressed
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_a:
                 player.changespeed(-1, 0)
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_d:
                 player.changespeed(1, 0)
-            elif event.key == pygame.K_UP:
+            elif event.key == pygame.K_w:
                 player.changespeed(0, -1)
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pygame.K_s:
                 player.changespeed(0, 1)
         # Reset speed when key goes up
         elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_a:
                 player.changespeed(1, 0)
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_d:
                 player.changespeed(-1, 0)
-            elif event.key == pygame.K_UP:
+            elif event.key == pygame.K_w:
                 player.changespeed(0, 1)
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pygame.K_s:
                 player.changespeed(0, -1)
     all_sprites_list.update() 
     # Clear the screen
