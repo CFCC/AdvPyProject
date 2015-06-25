@@ -50,7 +50,9 @@ class Player(pygame.sprite.Sprite):
         width = 40
         height = 60
         self.image = pygame.Surface([width, height])
+        player_image = pygame.image.load("stick.png").convert()
         self.image.fill(RED)
+        screen.blit(player_image, [x, y])
  
         # Set a referance to the image rect.
         self.rect = self.image.get_rect()
