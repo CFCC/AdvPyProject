@@ -199,7 +199,9 @@ class Level_01(Level):
         # Array with width, height, x, and y of platform
         level = [[210, 10, 0, 100],
                  [210, 10, 200, 600],
-                 [210, 10, 600, 500],
+                 [210, 10, 590, 500],
+                 [210, 10, 800, 350],
+                 [210, 10, 1165, 200],
                  ]
  
         # Go through the array above and add platforms
