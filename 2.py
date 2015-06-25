@@ -2,7 +2,7 @@ import pygame
 import random
 from block import Block
 from goodBlock import GoodBlock
-
+from badBlock import BadBlock
 # Define some colors
 BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)
@@ -87,7 +87,7 @@ for i in range(50):
 
 for i in range(50):
     # This represents a block
-    block = Block(RED, 15, 15)
+    block = BadBlock(RED, 15, 15)
  
     # Set a random location for the block
     block.rect.x = random.randrange(screen_width)
