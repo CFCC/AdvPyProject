@@ -117,23 +117,23 @@ while not done:
             done = True
         # Set the speed based on the key pressed
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_a:
                 player.changespeed(-1, 0)
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_d:
                 player.changespeed(1, 0)
-            elif event.key == pygame.K_UP:
+            elif event.key == pygame.K_w:
                 player.changespeed(0, -1)
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pygame.K_s:
                 player.changespeed(0, 1)
         # Reset speed when key goes up
         elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_a:
                 player.changespeed(1, 0)
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_d:
                 player.changespeed(-1, 0)
-            elif event.key == pygame.K_UP:
+            elif event.key == pygame.K_w:
                 player.changespeed(0, 1)
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pygame.K_s:
                 player.changespeed(0, -1)
     all_sprites_list.update() 
     # Clear the screen
