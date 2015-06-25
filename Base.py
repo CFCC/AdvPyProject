@@ -30,8 +30,8 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
  
 # Screen dimensions
-SCREEN_WIDTH = 1365
-SCREEN_HEIGHT = 700
+SCREEN_WIDTH = 1366
+SCREEN_HEIGHT = 768
  
  
 class Player(pygame.sprite.Sprite):
@@ -219,7 +219,7 @@ def main():
  
     # Set the height and width of the screen
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
-    screen = pygame.display.set_mode(size)
+    screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
  
     pygame.display.set_caption("Platformer Jumper")
  
