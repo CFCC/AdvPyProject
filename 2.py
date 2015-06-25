@@ -108,8 +108,6 @@ done = False
 clock = pygame.time.Clock()
  
 score = 0
-good_sound = pygame.mixer.Sound("good_block.wav")
-bad_sound = pygame.mixer.Sound("bad_block.wav")
 # -------- Main Program Loop -----------
 while not done:
     for event in pygame.event.get(): 
@@ -144,11 +142,9 @@ while not done:
     bad_blocks_hit_list = pygame.sprite.spritecollide(player, bad_block_list, True)
     # Check the list of collisions.
     for block in good_blocks_hit_list:
-        score += 1
-        good_sound.play()
+        player.changespeed(0, 0)
     for block in bad_blocks_hit_list:
-        score -= 1
-        bad_sound.play()
+        player.changespeed(0, 0)
     # Draw all the spites
     all_sprites_list.draw(screen)
     # Select the font to use, size, bold, italics
