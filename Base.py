@@ -187,14 +187,35 @@ class Level_01(Level):
                  [210, 10, 800, 350],
                  [210, 10, 1165, 200],
                  ]
- 
-        # Go through the array above and add platforms
+
         for platform in level:
             block = Platform(platform[0], platform[1])
             block.rect.x = platform[2]
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
+class Level_02(Level):
+    """ Definition for level 1. """
+     
+    def __init__(self, player):
+        """ Create level 1. """
+     
+            # Call the parent constructor
+        Level.__init__(self, player)
+     
+            # Array with width, height, x, and y of platform
+        level = [[210, 10, 0, 650],
+                    ]
+     
+            # Go through the array above and add platforms
+        for platform in level:
+            block = Platform(platform[0], platform[1])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.platform_list.add(block) 
+        # Go through the array above and add platforms
+        
  
  
 def main():
@@ -253,7 +274,16 @@ def main():
                     player.stop()
                 if event.key == pygame.K_d and player.change_x > 0:
                     player.stop()
-        
+        if player.rect.x >= 1340 and player.rect.y <= 200:
+           level_list = []
+           level_list.append( Level_02(player) )
+ 
+    # Set the current level
+           current_level_no = 0
+           current_level = level_list[current_level_no]
+           player.level = current_level
+           player.rect.x = 20
+           player.rect.y = 610
         # Update the player.
         active_sprite_list.update()
  
