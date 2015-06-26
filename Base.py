@@ -184,6 +184,7 @@ class Level(object):
  
  
 # Create platforms for the level
+'''
 class Level_01(Level):
     """ Definition for level 1. """
  
@@ -210,6 +211,45 @@ class Level_01(Level):
         
         level = [[15, 15, 0, 0],
                  [15, 15, 200, 585],
+                 ]
+
+        for platform in level:
+            block = Enemy(platform[0], platform[1])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.enemy_list.add(block)
+'''
+class Level_01(Level): #level 4
+    """ Definition for level 1. """
+ 
+    def __init__(self, player):
+        """ Create level 1. """
+ 
+        # Call the parent constructor
+        Level.__init__(self, player)
+ 
+        # Array with width, height, x, and y of platform
+        level = [[210, 10, 0, 700],
+                 [210, 10, 210, 600],
+                 [210, 10, 420, 500],
+                 [210, 10, 630, 400],
+                 [210, 10, 840, 300],
+				 [1366, 100, 210, 610],
+				 [1366, 100, 420, 510],
+				 [420, 100, 630, 410],
+				 [210, 100, 840, 310],
+                 ]
+
+        for platform in level:
+            block = Platform(platform[0], platform[1])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.platform_list.add(block)
+        
+        level = [[15, 15, 0, 0],
+                 [15, 15, 210, 585],
                  ]
 
         for platform in level:
