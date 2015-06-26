@@ -1,23 +1,3 @@
-"""
-Sample Python/Pygame Programs
-Simpson College Computer Science
-http://programarcadegames.com/
-http://simpson.edu/computer-science/
- 
-From:
-http://programarcadegames.com/python_examples/f.php?file=platform_jumper.py
- 
-Explanation video: http://youtu.be/BCxWJgN4Nnc
- 
-Part of a series:
-http://programarcadegames.com/python_examples/f.php?file=move_with_walls_example.py
-http://programarcadegames.com/python_examples/f.php?file=maze_runner.py
-http://programarcadegames.com/python_examples/f.php?file=platform_jumper.py
-http://programarcadegames.com/python_examples/f.php?file=platform_scroller.py
-http://programarcadegames.com/python_examples/f.php?file=platform_moving.py
-http://programarcadegames.com/python_examples/sprite_sheets/
-"""
- 
 import pygame
  
 # Global constants
@@ -213,28 +193,6 @@ class Level_01(Level):
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
-          
-class Level_02(Level):
-    """ Definition for level 1. """
-     
-    def __init__(self, player):
-        """ Create level 1. """
-     
-            # Call the parent constructor
-        Level.__init__(self, player)
-     
-            # Array with width, height, x, and y of platform
-        level = [[210, 10, 0, 650],
-                    ]
-     
-            # Go through the array above and add platforms
-        for platform in level:
-            block = Platform(platform[0], platform[1])
-            block.rect.x = platform[2]
-            block.rect.y = platform[3]
-            block.player = self.player
-            self.platform_list.add(block)
-            
  
  
 def main():
@@ -274,10 +232,9 @@ def main():
     # -------- Main Program Loop -----------
     while not done:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
- 
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    done = True
                 if event.key == pygame.K_a:
                     player.go_left()
                 if event.key == pygame.K_d:
@@ -290,18 +247,7 @@ def main():
                     player.stop()
                 if event.key == pygame.K_d and player.change_x > 0:
                     player.stop()
-        if player.rect.x >= 1340 and player.rect.y <= 200:
-           level_list = []
-           level_list.append( Level_02(player) )
  
-    # Set the current level
-           current_level_no = 0
-           current_level = level_list[current_level_no]
-           player.level = current_level
-           player.rect.x = 20
-           player.rect.y = 610
-           
-            
         # Update the player.
         active_sprite_list.update()
  
