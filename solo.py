@@ -304,6 +304,9 @@ class Level_02(Level):
                  [55, 5, 600, 220],
                  [55, 5, 800, 220],
                  [150, 10, 1216, 600],
+                 [50, 10, 350, 700],
+                 [50, 10, 250, 600],
+                 [50, 10, 150, 500],
                     ]
      
             # Go through the array above and add platforms
@@ -388,7 +391,7 @@ def main():
  
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
- 
+    level_counter = 1
     player.rect.x = 40
     player.rect.y = 40
     active_sprite_list.add(player)
@@ -421,19 +424,25 @@ def main():
                     player.stop()
                 if event.key == pygame.K_d and player.change_x > 0:
                     player.stop()
-        if player.rect.x >= 1340 and player.rect.y <= 200:
+        if player.rect.x >= 1340 and player.rect.y <= 200 and level_counter == 1:
            level_list = []
            level_list.append( Level_02(player) )
-
-    # Set the current level
            current_level_no = 0
            current_level = level_list[current_level_no]
            player.level = current_level
            player.rect.x = 20
-           player.rect.y = 300
-        #moving_pfy1 += pfy_change
-        #if moving_pfy1 == 350 or 700:
-             #pfy_change *= -1           
+           player.rect.y = 200
+           level_counter += 1
+           
+        if player.rect.x >= 0 and player.rect.y >= 349 and  player.rect.x <=149 and level_counter == 2:
+           level_list = []
+           level_list.append( Level_03(player) )
+           current_level_no = 0
+           current_level = level_list[current_level_no]
+           player.level = current_level
+           player.rect.x = 20
+           player.rect.y = 200
+           level_counter += 1
         # Update the player.
         active_sprite_list.update()
  
