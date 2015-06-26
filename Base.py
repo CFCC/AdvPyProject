@@ -28,6 +28,8 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
+PORTAL = (255, 84 ,205)
+INVISIBLE = (250,250,250)
  
 # Screen dimensions
 SCREEN_WIDTH = 1366
@@ -149,7 +151,7 @@ class Platform(pygame.sprite.Sprite):
         super().__init__()
  
         self.image = pygame.Surface([width, height])
-        self.image.fill(GREEN)
+        self.image.fill(BLACK)
  
         self.rect = self.image.get_rect()
  
@@ -179,7 +181,7 @@ class Level(object):
         """ Draw everything on this level. """
  
         # Draw the background
-        screen.fill(BLUE)
+        screen.fill(WHITE)
  
         # Draw all the sprite lists that we have
         self.platform_list.draw(screen)
