@@ -343,31 +343,77 @@ class Level_02(Level):
         # Go through the array above and add platforms
 class Level_03(Level):
     """ Definition for level 1. """
-     
+ 
     def __init__(self, player):
         """ Create level 1. """
-     
-            # Call the parent constructor
+ 
+        # Call the parent constructor
         Level.__init__(self, player)
-     
-            # Array with width, height, x, and y of platform
-        level = [[210, 10, 0, 650],
+ 
+        # Array with width, height, x, and y of platform
+        level = [[210, 10, 0, 150],
+                 [210, 1, 1000, 600],
+                 [210, 1, 400, 400],
+                 [210, 1, 800, 350],
+                 [210, 1, 1100, 500],
+                 [10, 300, 210, 150],
+                 [100, 1, 0, 600],]
                  
-
-                 
-                    ]
-     
-            # Go through the array above and add platforms
         for platform in level:
             block = Platform(platform[0], platform[1])
             block.rect.x = platform[2]
             block.rect.y = platform[3]
             block.player = self.player
-            self.platform_list.add(block) 
-        # Go through the array above and add platforms                 
+            self.platform_list.add(block)
+
+    
+        #SLPIT
+    
+        level = [[210, 10, 600, 600,"x",1100, 0, 1]]
+        #width, height, x, y, "x" or "y", start(same as x), end, speed         
+
+        for platform in level:
+            block = Moving_Platform(platform[0], platform[1],platform[4], platform[5], platform[6],platform[7])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.moving_platform.add(block)
+
+        level = [[900, 15, 150, 500]
+                 ]
+
+        for platform in level:
+            block = Enemy(platform[0], platform[1])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.enemy_list.add(block)
         
+
+class Level_04(Level):
+    """ Definition for level 1. """
+
+    def __init__(self, player):
+        """ Create level 1. """
  
+        # Call the parent constructor
+        Level.__init__(self, player)
  
+        # Array with width, height, x, and y of platform
+        level = [[100, 1, 500, 200],
+                 [100, 1, 800, 600],
+                 [100, 1, 380, 500],
+                 [100, 1, 800, 350],
+                 [100, 1, 1100, 500],
+                 [100, 4, 0, 600],
+                 [100, 1, 175, 125],]
+                 
+        for platform in level:
+            block = Platform(platform[0], platform[1])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.platform_list.add(block)
 def main():
     """ Main Program """
     pygame.init()
@@ -441,8 +487,28 @@ def main():
            current_level = level_list[current_level_no]
            player.level = current_level
            player.rect.x = 20
-           player.rect.y = 200
+           player.rect.y = 40
            level_counter += 1
+           
+        if player.rect.x >= 0 and player.rect.y >= 349 and  player.rect.x <=149 and level_counter == 3:
+           level_list = []
+           level_list.append( Level_04(player) )
+           current_level_no = 0
+           current_level = level_list[current_level_no]
+           player.level = current_level
+           player.rect.x = 20
+           player.rect.y = 500
+           level_counter += 1
+           
+        if player.rect.x <= 175 and player.rect.y <= 0 and level_counter == 4:
+           level_list = []
+           level_list.append( Level_05(player) )
+           current_level_no = 0
+           current_level = level_list[current_level_no]
+           player.level = current_level
+           player.rect.x = 20
+           player.rect.y = 500
+           level_counter += 1   
         # Update the player.
         active_sprite_list.update()
  
