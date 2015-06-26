@@ -134,8 +134,18 @@ class Platform(pygame.sprite.Sprite):
         self.image.fill(BLACK)
  
         self.rect = self.image.get_rect()
+		
+class Enemy(pygame.sprite.Sprite):
+    """ ENEMY """
  
+    def __init__(self, width, height):
+        super().__init__()
  
+        self.image = pygame.Surface([width, height])
+        self.image.fill(RED)
+ 
+        self.rect = self.image.get_rect()
+
 class Level(object):
     """ This is a generic super-class used to define a level.
         Create a child class for each level with level-specific
@@ -151,7 +161,7 @@ class Level(object):
         # Background image
         self.background = pygame.image.load("towerwall.png").convert()
  
-    # Update everythign on this level
+    # Update everything on this level
     def update(self):
         """ Update everything in this level."""
         self.platform_list.update()
@@ -230,7 +240,7 @@ def main():
  
     # Create the player
     player = Player()
- 
+    enemy = Enemy(15, 15)
     # Create all the levels
     level_list = []
     level_list.append( Level_01(player) )
@@ -245,6 +255,8 @@ def main():
     player.rect.x = 40
     player.rect.y = 40
     active_sprite_list.add(player)
+    active_sprite_list.add(enemy)
+	
  
     # Loop until the user clicks the close button.
     done = False
