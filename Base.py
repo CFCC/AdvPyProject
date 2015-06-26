@@ -62,7 +62,10 @@ class Player(pygame.sprite.Sprite):
             elif self.change_x < 0:
                 # Otherwise if we are moving left, do the opposite.
                 self.rect.left = block.rect.right
- 
+        enemy_block_hit_list = pygame.sprite.spritecollide(self, self.level.enemy_list, False)
+        for block in enemy_block_hit_list:
+            self.rect.y = 40
+            self.rect.x = 40
         # Move up/down
         self.rect.y += self.change_y
  
@@ -204,6 +207,18 @@ class Level_01(Level):
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
+        
+        level = [[15, 15, 0, 0],
+                 [15, 15, 200, 585],
+                 ]
+
+        for platform in level:
+            block = Enemy(platform[0], platform[1])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.enemy_list.add(block)
+			
 class Level_02(Level):
     """ Definition for level 1. """
      
@@ -240,7 +255,7 @@ def main():
  
     # Create the player
     player = Player()
-    enemy = Enemy(15, 15)
+	
     # Create all the levels
     level_list = []
     level_list.append( Level_01(player) )
@@ -255,7 +270,6 @@ def main():
     player.rect.x = 40
     player.rect.y = 40
     active_sprite_list.add(player)
-    active_sprite_list.add(enemy)
 	
  
     # Loop until the user clicks the close button.
