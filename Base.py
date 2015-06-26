@@ -229,6 +229,10 @@ def main():
     # Used to manage how fast the screen updates
     clock = pygame.time.Clock()
  
+    font = pygame.font.Font(None, 25)
+    frame_count = 0
+    frame_rate = 60
+    start_time = 90
     # -------- Main Program Loop -----------
     while not done:
         for event in pygame.event.get():
@@ -247,7 +251,7 @@ def main():
                     player.stop()
                 if event.key == pygame.K_d and player.change_x > 0:
                     player.stop()
- 
+        
         # Update the player.
         active_sprite_list.update()
  
@@ -265,9 +269,22 @@ def main():
         # ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
         current_level.draw(screen)
         active_sprite_list.draw(screen)
+        total_seconds = frame_count // frame_rate
  
+        # Divide by 60 to get total minutes
+        minutes = total_seconds // 60
+ 
+        # Use modulus (remainder) to get seconds
+        seconds = total_seconds % 60
+ 
+        # Use python string formatting to format in leading zeros
+        output_string = "Time: {0:02}:{1:02}".format(minutes, seconds)
+ 
+        # Blit to the screen
+        text = font.render(output_string, True, BLACK)
+        screen.blit(text, [15, 740])
         # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
- 
+        frame_count += 1
         # Limit to 60 frames per second
         clock.tick(60)
  
