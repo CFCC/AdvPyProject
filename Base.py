@@ -1,23 +1,3 @@
-"""
-Sample Python/Pygame Programs
-Simpson College Computer Science
-http://programarcadegames.com/
-http://simpson.edu/computer-science/
- 
-From:
-http://programarcadegames.com/python_examples/f.php?file=platform_jumper.py
- 
-Explanation video: http://youtu.be/BCxWJgN4Nnc
- 
-Part of a series:
-http://programarcadegames.com/python_examples/f.php?file=move_with_walls_example.py
-http://programarcadegames.com/python_examples/f.php?file=maze_runner.py
-http://programarcadegames.com/python_examples/f.php?file=platform_jumper.py
-http://programarcadegames.com/python_examples/f.php?file=platform_scroller.py
-http://programarcadegames.com/python_examples/f.php?file=platform_moving.py
-http://programarcadegames.com/python_examples/sprite_sheets/
-"""
- 
 import pygame
  
 # Global constants
@@ -252,10 +232,9 @@ def main():
     # -------- Main Program Loop -----------
     while not done:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
- 
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    done = True
                 if event.key == pygame.K_a:
                     player.go_left()
                 if event.key == pygame.K_d:
