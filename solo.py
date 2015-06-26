@@ -134,11 +134,13 @@ class Player(pygame.sprite.Sprite):
         # 1 when working with a platform moving down.
         self.rect.y += 2
         platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
+        moving_platform_hit_list = pygame.sprite.spritecollide(self, self.level.moving_platform, False)
         self.rect.y -= 2
  
         # If it is ok to jump, set our speed upwards
-        if len(platform_hit_list) > 0 or self.rect.bottom >= SCREEN_HEIGHT:
+        if len(platform_hit_list) > 0 or len(moving_platform_hit_list) or self.rect.bottom >= SCREEN_HEIGHT:
             self.change_y = -10
+            
  
     # Player-controlled movement:
     def go_left(self):
@@ -195,9 +197,9 @@ class Moving_Platform(pygame.sprite.Sprite):
                 self.speed = self.speed*-1
         if self.direction.lower() == "y":
             self.rect.y += self.speed
-            if self.rect.x == self.end:
+            if self.rect.y == self.end:
                 self.speed = self.speed*-1
-            elif self.rect.x == self.start:
+            elif self.rect.y == self.start:
                 self.speed = self.speed*-1
             
         
@@ -275,8 +277,8 @@ class Level_01(Level):
             block.player = self.player
             self.platform_list.add(block)
 
-            
-        level = [[210, 10, 0, 100,"x",0, 600, 1]]
+        level = []    
+        
         #width, height, x, y, "x" or "y", start(same as x), end, speed         
 
         for platform in level:
@@ -302,7 +304,6 @@ class Level_02(Level):
                  [55, 5, 600, 220],
                  [55, 5, 800, 220],
                  [150, 10, 1216, 600],
-                 [250, 10, 600, moving_pfy1],
                     ]
      
             # Go through the array above and add platforms
@@ -324,6 +325,16 @@ class Level_02(Level):
             block.player = self.player
             self.enemy_list.add(block)
 
+        #width, height, x, y, "x" or "y", start(same as x), end, speed
+        level = [[250, 10 ,650, 700, "y", 700, 350, -1]]
+        
+            
+        for platform in level:
+            block = Moving_Platform(platform[0], platform[1],platform[4], platform[5], platform[6],platform[7])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.moving_platform.add(block)
 
             
         # Go through the array above and add platforms
