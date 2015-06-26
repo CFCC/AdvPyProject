@@ -414,6 +414,45 @@ class Level_04(Level):
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
+class Level_05(Level): 
+    """ Definition for level 1. """
+ 
+    def __init__(self, player):
+        """ Create level 1. """
+ 
+        # Call the parent constructor
+        Level.__init__(self, player)
+ 
+        # Array with width, height, x, and y of platform
+        level = [[210, 10, 0, 700],
+                 [210, 10, 210, 600],
+                 [210, 10, 420, 500],
+                 [210, 10, 630, 400],
+                 [210, 10, 840, 300],
+                 [1156, 100, 210, 610],
+                 [946, 100, 420, 510],
+                 [420, 100, 630, 410],
+                 [210, 100, 840, 310],
+                 ]
+
+        for platform in level:
+            block = Platform(platform[0], platform[1])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.platform_list.add(block)
+        
+        level = [[190, 50, 230, 550],
+                 [190, 50, 440, 450],
+                 [190, 50, 650, 350],
+                 ]
+
+        for platform in level:
+            block = Enemy(platform[0], platform[1])
+            block.rect.x = platform[2]
+            block.rect.y = platform[3]
+            block.player = self.player
+            self.enemy_list.add(block)
 def main():
     """ Main Program """
     pygame.init()
